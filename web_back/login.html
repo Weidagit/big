@@ -72,7 +72,7 @@
                  if (result.code===200){
                    window.location.href="index.html"
                  }else{
-                    $("#myModal").modal(result.msg)
+                    $("#modalMsg").text(result.msg)
                     $("#myModal").modal("show");
                  }
 
