@@ -116,7 +116,7 @@
             <td class="text-center">
                 <a href="javascript:editTr({&quot;id&quot;:&quot;2&quot;,&quot;slug&quot;:&quot;funny&quot;,&quot;name&quot;:&quot;奇趣事&quot;});"
                     class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:deleteTr( 2 );" class="btn btn-danger btn-xs">删除</a>
+                <a href="javascript:deleteTr({{item.id}});" class="btn btn-danger btn-xs">删除</a>
             </td>
         </tr>
           
@@ -150,7 +150,10 @@
           })      
       </script>
       <script>
-          $("tbody").empty()
+
+
+function getAllCategory(){
+    $("tbody").empty()
        $.getJSON("http://localhost:8000/admin/category_search",function(result){
         //    console.log(result)
            if(result.code===200){
@@ -177,9 +180,22 @@
 
            }
 
+          
+
+       });
+}
+getAllCategory()   
+       function deleteTr(id){
+           $.post("http://localhost:8000/admin/category_delete",{id:id},function(result){
+             if(result.code===200){
+                getAllCategory()
+                
+             }
+                 
 
 
-       })
+           })
+          }
       </script>
 </body>
 
